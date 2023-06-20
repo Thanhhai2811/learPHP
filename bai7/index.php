@@ -13,38 +13,38 @@
   <body>
   <?php
 
-$cookie = $male = $files = $iem = $section  = $diachi = $genphone = $getdiachi = $password = '';
-$cookieErr = $maleErr = $filesErr = $iemErr = $sectionErr = $diachiErr = $genphoneErr = $getdiachiErr = $passwordErr = '';
+$organization = $male = $files = $iem = $section  = $addrees = $genphone = $oneaddrees = $password = '';
+$organizationErr = $maleErr = $filesErr = $iemErr = $sectionErr = $addreesErr = $genphoneErr = $oneaddreesErr = $passwordErr = '';
 $content = '';
 
 if (isset($_POST['Submit'])) {
-    $cookie = $_POST['cookie'];
+   $organization = $_POST['organization'];
     $male = $_POST['male'];
     $files = $_POST['files'];
     $iem = $_POST['iem'];
     $section = $_POST['section'];
-    $diachi = $_POST['diachi'];
+    $addrees = $_POST['addrees'];
     $genphone = isset($_POST['genphone']) ? $_POST['genphone'] : '';
-    $getdiachi = $_POST['getdiachi'];
+    $oneaddrees = $_POST['oneaddrees'];
     $password = $_POST['password'];
 
 
-         // Validate for _COOKIE1
-    if (empty($cookie)) {
-        $cookieErr = '管理者名は必ず指定してください。';
+         // Validate for Tên tổ chức
+    if (empty($organization)) {
+      $organizationErr = '管理者名は必ず指定してください。';
     }
 
-     // Validate for _COOKIES
+     // Validate for đơn vị liên kết 
     if (empty($male)) {
       $maleErr  = '所属は必ず指定してください。 ';
     }
 
-    // Validate for _FILES
+    // Validate for Tên quản trị viên
     if (empty($files)) {
       $filesErr  = '管理者名は必ず指定してください。 ';
     }
 
-
+    // validate mã bưu điện
     if (empty($iem)) {
       $iemErr  = '郵便番号は必ず指定してください。';
     }
@@ -54,12 +54,12 @@ if (isset($_POST['Submit'])) {
       $sectionErr = '郵便番号は必ず指定してください。 ';
     }
 
-       // Validate for diachi
-    if (empty($diachi)) {
-      $diachiErr  = 'ご住所は必ず指定してください。';
+       // Validate for địa chỉ 
+    if (empty($addrees)) {
+      $addreesErr = 'ご住所は必ず指定してください。';
     }
 
-       // Validate for sodienthoai
+       // Validate for số điện thoại
     if (empty($genphone)) {
       $genphoneErr = '電話番号は必ず指定してください。';
     }else if (strlen($_POST['genphone']) > 10) {
@@ -67,25 +67,31 @@ if (isset($_POST['Submit'])) {
     }
 
     
-    if (empty($getdiachi)) {
-      $getdiachiErr = 'Vui lòng nhập email của bạn';
-    } else if (!filter_var($_POST['getdiachi'], FILTER_VALIDATE_EMAIL)) {
-    $getdiachiErr = 'Email không đúng định dạng';
+    if (empty($oneaddrees)) {
+      $oneaddreesErr = 'Vui lòng nhập email của bạn';
+    } else if (!filter_var($_POST['oneaddrees'], FILTER_VALIDATE_EMAIL)) {
+      $oneaddreesErr = 'Email không đúng định dạng';
     }
 
-       // Validate for matkhau
+       // Validate for  Mật khẩu
     if (empty($password)) {
       $passwordErr  = 'パスワードは必ず指定してください。';
     }
 }
 
+    // In thông tin hiển thị ra màn hình
+    if ($organization && $male && $files && $iem && $section &&  $addrees && $genphone && $oneaddrees ) {
+      $content .= "<p>Tên khách hàng : ${organization}";  
+      $content .= "<p>Đơn vị liên kết : ${male}";
+      $content .= "<p>Tên quản trị : ${files}";
+      $content .= "<p>Mã bưu điện : ${iem}";
+      $content .= "<p>Mã bưu điện : ${section}";
+      $content .= "<p>Địa chỉ : ${addrees}";
+      $content .= "<p>số điện thoại : ${genphone}";  
+      $content .= "<p>password : ${password}";
 
-
-
-
-
-
-
+    }
+  
 
 ?>
     <header id="header">
@@ -134,8 +140,8 @@ if (isset($_POST['Submit'])) {
                 <div class="form_headline">
                   団体名
                 </div>
-                <input type="text" name="cookie" placeholder="株式会社〇〇" class="<?= $cookieErr ? 'input-error' : '' ?>" value="<?= $cookie ?>">
-                <?= $cookieErr ? "<span class='smg-error'>{$cookieErr}</span>" : '' ?>
+                <input type="text" name="organization" placeholder="株式会社〇〇" class="<?= $organizationErr ? 'input-error' : '' ?>" value="<?= $organization?>">
+                <?= $organizationErr ? "<span class='smg-error'>{$organizationErr}</span>" : '' ?>
               </div>
 ​
               <div class="form_box">
@@ -155,7 +161,7 @@ if (isset($_POST['Submit'])) {
 ​                 <?= $filesErr ? "<span class='smg-error'>{$filesErr}</span>" : '' ?>
               </div>
 ​
-​
+​     
               <div class="form_box">
                 <div class="form_headline">
                   郵便番号
@@ -177,8 +183,8 @@ if (isset($_POST['Submit'])) {
                   ご住所
                 </div>
                 <div class="pref"></div>
-                <input type="text" name="diachi" placeholder="〇〇町1-1　〇〇マンション301" class="<?= $diachiErr ? 'input-error' : '' ?>" value="<?= $diachi?>">
-                <?= $diachiErr ? "<span class='smg-error'>{$diachiErr}</span>" : '' ?>
+                <input type="text" name="addrees" placeholder="〇〇町1-1　〇〇マンション301" class="<?= $addreesErr ? 'input-error' : '' ?>" value="<?= $addrees?>">
+                <?= $addreesErr ? "<span class='smg-error'>{$addreesErr}</span>" : '' ?>
               </div>
 ​
               <div class="form_box">
@@ -196,8 +202,8 @@ if (isset($_POST['Submit'])) {
                 <div class="form_headline">
                   メールアドレス
                 </div>
-                <input type="email" name="getdiachi" placeholder="example@example.com"  class="<?= $getdiachiErr ? 'input-error' : '' ?>" value="<?= $getdiachi ?>">
-                <?= $getdiachiErr ? "<span class='smg-error'>{$getdiachiErr}</span>" : '' ?>
+                <input type="email" name="oneaddrees" placeholder="example@example.com"  class="<?= $oneaddreesErr ? 'input-error' : '' ?>" value="<?= $oneaddrees ?>">
+                <?= $oneaddreesErr ? "<span class='smg-error'>{$oneaddreesErr}</span>" : '' ?>
 ​
               </div>
 ​
@@ -306,6 +312,9 @@ if (isset($_POST['Submit'])) {
 ​
       </section>
       </form>
+
+
+      <div ><?= $content?></div>
 ​
 ​
     </main>
