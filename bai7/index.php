@@ -12,6 +12,7 @@
 ​
   <body>
   <?php
+  
 
 $organization = $male = $files = $iem = $section  = $addrees = $genphone = $oneaddrees = $password = '';
 $organizationErr = $maleErr = $filesErr = $iemErr = $sectionErr = $addreesErr = $genphoneErr = $oneaddreesErr = $passwordErr = '';
@@ -96,6 +97,7 @@ if (isset($_POST['Submit'])) {
 ?>
     <header id="header">
     </header>
+    
 ​
     <div class="container">
       <div class="breadcrumbs">
@@ -128,7 +130,7 @@ if (isset($_POST['Submit'])) {
                 <input type="radio" name="destination" value="school">学校
               </label>
               <label class="side_label">
-                <input type="radio" name="destination" value="home">自宅
+               
               </label>
 ​
             </div>
@@ -234,6 +236,7 @@ if (isset($_POST['Submit'])) {
                   所属（学年・クラス）
                 </div>
                 <input type="text" name="" placeholder="〇年〇組">
+                
               </div>
 ​
               <div class="form_box">
@@ -311,7 +314,7 @@ if (isset($_POST['Submit'])) {
         </div>
 ​
       </section>
-      </form>
+      </form>             
 
 
       <div ><?= $content?></div>
