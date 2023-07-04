@@ -3,6 +3,13 @@
 $pageName = $_GET['module'] ?? null;
 $actionName = $_GET['action'] ?? null;
 
+// if($pageName != 'auth' && empty($_SESSION['user'])) {
+//     header('location:index.php?module=auth&action=login');
+// }
+// if ($actionName == 'login' && !empty($_SESSION['user'])) {
+//     header('location:index.php?module=product');
+// }
+
 
 
 switch ($pageName) {
@@ -24,21 +31,41 @@ switch ($pageName) {
         }
         break;
     }
-    case 'user': {
-        switch ($actionName) {
-            case 'create': {
-                require('./users/form.php');
-                break;
+        case 'user': {
+            switch ($actionName) {
+                case 'add': {
+                    require('./users/add.php');
+                    break;
+                }
+                case 'edit': {
+                    require('./users/edit.php');
+                    break;
+                }
+
+                case 'delete': {
+                    require('./users/delete.php');
+                    break;
+                }
+                default: {
+                    require('./users/list.php');
+                    break;
+                }
             }
-            case 'edit': {
-                require('./products/edit.php');
-                break;
-            }
-            default: {
-                require('./users/index.php');
-            }
+            break;
         }
-        break;
-    }
+
+        case 'auth': {
+            if($actionName == 'login') {
+                require "./auth/process_login.php";
+                require "./auth/login.php";
+
+                if ($actionName == 'logout') {
+                    require './auth/logout.php';
+                }    
+                
+            }
+            break;
+        }
+            
 
 }
