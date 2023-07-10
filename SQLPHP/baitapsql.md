@@ -38,4 +38,4 @@ select user_id from user_groups group by user_id having count(*) >= 2;
 14. Lấy ra những team chỉ có thành là Nam
  SELECT group_id FROM user_groups where group_id in (select id from users where gender = 1);
 15.  Lấy ra danh sách hộ gia đình và số thành viên tương ứng của hộ gia đình đó
-
+select users.name, users.email, famalies.address from famalies inner join users on famalies.id = users.family_id;
