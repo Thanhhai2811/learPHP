@@ -1,6 +1,7 @@
 1. Lấy ra tất cả user có giới tính là nữ
 select * from users where gender = 1;
 
+
 2. Lấy ra tất cả user có giới tính là nam
 select * from users where gender = 2;
 
